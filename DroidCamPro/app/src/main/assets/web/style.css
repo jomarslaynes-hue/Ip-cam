@@ -1,0 +1,16 @@
+/* DroidCam Pro Remote Control Theme */
+body {
+  margin: 0;
+  background-color: #0b0f17;
+  color: #f3f4f6;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+.slider {
+  accent-color: #3b82f6;
+  height: 6px;
+  border-radius: 4px;
+}
+button {
+  cursor: pointer;
+  user-select: none;
+}

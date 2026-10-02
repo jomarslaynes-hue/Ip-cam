@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DroidCam Pro Remote Control</title>
+  <link rel="stylesheet" href="/web/style.css">
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans min-h-screen">
+  <div class="max-w-4xl mx-auto p-4 md:p-6">
+    <header class="flex flex-wrap items-center justify-between pb-4 border-b border-gray-800 gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+        <h1 class="text-xl font-bold tracking-tight text-white">DroidCam Pro Remote Control</h1>
+      </div>
+      <div class="flex items-center space-x-4 text-xs">
+        <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300">Port: 8080</span>
+        <span id="clientCountBadge" class="px-2.5 py-1 rounded bg-blue-900/60 text-blue-300">Clients: 1</span>
+      </div>
+    </header>
+
+    <!-- Live Preview Screen -->
+    <div class="mt-6 relative bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800 aspect-video flex items-center justify-center">
+      <img id="cameraPreview" src="/stream" alt="Live Camera Preview" class="w-full h-full object-contain" />
+      <div class="absolute top-3 left-3 bg-black/70 backdrop-blur px-2.5 py-1 rounded text-xs font-mono text-emerald-400">
+        LIVE STREAM
+      </div>
+      <div id="resolutionBadge" class="absolute top-3 right-3 bg-black/70 backdrop-blur px-2.5 py-1 rounded text-xs font-mono text-gray-300">
+        1080p @ 30 FPS
+      </div>
+    </div>
+
+    <!-- Quick Action Bar -->
+    <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+      <button id="btnSwitchLens" class="btn bg-gray-800 hover:bg-gray-700 py-3 px-4 rounded-lg flex items-center justify-center space-x-2 text-sm font-medium transition">
+        <span>🔄 Flip Camera</span>
+      </button>
+      <button id="btnTorch" class="btn bg-gray-800 hover:bg-gray-700 py-3 px-4 rounded-lg flex items-center justify-center space-x-2 text-sm font-medium transition">
+        <span id="torchIcon">💡</span> <span id="torchText">Torch: OFF</span>
+      </button>
+      <button id="btnMuteAudio" class="btn bg-gray-800 hover:bg-gray-700 py-3 px-4 rounded-lg flex items-center justify-center space-x-2 text-sm font-medium transition">
+        <span>🎙️ Toggle Audio</span>
+      </button>
+      <button id="btnRefreshStream" class="btn bg-blue-600 hover:bg-blue-500 py-3 px-4 rounded-lg flex items-center justify-center space-x-2 text-sm font-medium transition">
+        <span>🔁 Reconnect Stream</span>
+      </button>
+    </div>
+
+    <!-- Camera Control Sliders -->
+    <div class="mt-6 bg-gray-900/80 rounded-xl p-5 border border-gray-800 space-y-5">
+      <!-- Zoom -->
+      <div>
+        <div class="flex justify-between text-sm mb-1.5 font-medium">
+          <label for="zoomSlider">Digital Zoom</label>
+          <span id="zoomValue" class="text-blue-400 font-mono">1.0x</span>
+        </div>
+        <input id="zoomSlider" type="range" min="1.0" max="8.0" step="0.1" value="1.0" class="slider w-full" />
+      </div>
+
+      <!-- Exposure EV -->
+      <div>
+        <div class="flex justify-between text-sm mb-1.5 font-medium">
+          <label for="exposureSlider">Exposure Compensation (EV)</label>
+          <span id="exposureValue" class="text-blue-400 font-mono">0 EV</span>
+        </div>
+        <input id="exposureSlider" type="range" min="-4" max="4" step="1" value="0" class="slider w-full" />
+      </div>
+
+      <!-- Quality & Bitrate -->
+      <div>
+        <div class="flex justify-between text-sm mb-1.5 font-medium">
+          <label for="qualitySlider">JPEG Compression Quality</label>
+          <span id="qualityValue" class="text-blue-400 font-mono">80%</span>
+        </div>
+        <input id="qualitySlider" type="range" min="30" max="95" step="5" value="80" class="slider w-full" />
+      </div>
+    </div>
+
+    <!-- Quick OBS Source Links -->
+    <div class="mt-6 p-4 rounded-xl bg-gray-900/60 border border-gray-800">
+      <h3 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">OBS Studio URLs</h3>
+      <div class="space-y-2 text-xs font-mono">
+        <div class="flex items-center justify-between p-2 rounded bg-black/60">
+          <span class="text-gray-400">MJPEG Stream:</span>
+          <span class="text-emerald-400 select-all" id="obsMjpegUrl">http://PHONE-IP:8080/stream</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded bg-black/60">
+          <span class="text-gray-400">OBS Browser Source:</span>
+          <span class="text-emerald-400 select-all" id="obsBrowserUrl">http://PHONE-IP:8080/obs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/web/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.obs.droidcampro.app-debug-60:/xml_backup_rules.xml.flat",
+        "source": "com.obs.droidcampro.app-main-62:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.obs.droidcampro.app-debug-60:/xml_data_extraction_rules.xml.flat",
+        "source": "com.obs.droidcampro.app-main-62:/xml/data_extraction_rules.xml"
+    }
+]

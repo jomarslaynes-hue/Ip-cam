@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DroidCam OBS Clean Feed</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; overflow: hidden; background: transparent; }
+    img#stream {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <img id="stream" src="/stream" alt="OBS Stream" />
+  <script>
+    // Auto reconnect on temporary network hiccup
+    const img = document.getElementById('stream');
+    img.onerror = () => {
+      setTimeout(() => {
+        img.src = '/stream?t=' + Date.now();
+      }, 1000);
+    };
+  </script>
+</body>
+</html>
